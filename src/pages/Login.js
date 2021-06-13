@@ -5,6 +5,7 @@ class Login extends React.Component {
     return (
       <main>
         <form>
+          <h1>Trybe Wallet</h1>
           <label htmlFor="email-input-id">
             E-mail
             <input
