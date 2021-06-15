@@ -48,6 +48,7 @@ class Login extends React.Component {
   }
 
   render() {
+    const { isButtonDisabled } = this.state;
     return (
       <main>
         <form>
