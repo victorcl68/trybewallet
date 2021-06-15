@@ -66,7 +66,7 @@ const mapStateToProps = (state) => ({ coins: state.wallet.currencies });
 const mapDispatchToProps = (dispatch) => ({ sendCoin: () => dispatch(fetchCoin()) });
 
 Wallet.propTypes = { sendCoin: PropTypes.func.isRequired,
-  coins: PropTypes.shape().isRequired,
+  coins: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Wallet);
