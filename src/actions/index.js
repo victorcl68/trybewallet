@@ -1,1 +1,6 @@
-// Coloque aqui suas actions
+const emailData = (state) => ({
+  type: 'ATT_EMAIL',
+  state,
+});
+
+export default emailData;
