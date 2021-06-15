@@ -9,7 +9,7 @@ class Wallet extends React.Component {
       <>
         <header>
           <h3 data-testid="email-field">
-            Email:
+            Email
             { emailUser }
           </h3>
           <h3 data-testid="total-field"> 0 </h3>
@@ -17,35 +17,35 @@ class Wallet extends React.Component {
         </header>
         <form>
           <label htmlFor="valor">
-            Valor:
+            Valor
             <input type="number" id="valor" />
           </label>
           <label htmlFor="descricao">
-            Descrição:
+            Descrição
             <input type="text" id="descricao" />
           </label>
           <label htmlFor="moeda">
-            Moeda:
-            <select>
-              <option> </option>
+            Moeda
+            <select id="moeda">
+              <option id="moeda">BRL</option>
             </select>
           </label>
           <label htmlFor="metodo">
-            Método de pagamento:
-            <select>
-              <option>Dinheiro</option>
-              <option>Cartão de crédito</option>
-              <option>Cartão de débito</option>
+            Método de pagamento
+            <select id="metodo">
+              <option id="metodo">Dinheiro</option>
+              <option id="metodo">Cartão de crédito</option>
+              <option id="metodo">Cartão de débito</option>
             </select>
           </label>
           <label htmlFor="tag">
-            Tag:
-            <select>
-              <option>Alimentação</option>
-              <option>Lazer</option>
-              <option>Trabalho</option>
-              <option>Transporte</option>
-              <option>Saúde</option>
+            Tag
+            <select id="tag">
+              <option id="tag">Alimentação</option>
+              <option id="tag">Lazer</option>
+              <option id="tag">Trabalho</option>
+              <option id="tag">Transporte</option>
+              <option id="tag">Saúde</option>
             </select>
           </label>
         </form>
