@@ -1,37 +1,44 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { fetchCoin } from '../actions';
+import Header from '../components/Header';
 
 class Wallet extends React.Component {
+  componentDidMount() {
+    const { sendCoin } = this.props;
+    sendCoin();
+  }
+
   render() {
-    const { emailUser } = this.props;
+    const { coins } = this.props;
     return (
       <>
-        <header>
-          <h3 data-testid="email-field">
-            Email
-            { emailUser }
-          </h3>
-          <h3 data-testid="total-field"> 0 </h3>
-          <h3 data-testid="header-currency-field"> BRL </h3>
-        </header>
+        <Header />
         <form>
           <label htmlFor="valor">
-            Valor
+            Valor:
             <input type="number" id="valor" />
           </label>
           <label htmlFor="descricao">
-            Descrição
+            Descrição:
             <input type="text" id="descricao" />
           </label>
           <label htmlFor="moeda">
-            Moeda
+            Moeda:
             <select id="moeda">
-              <option id="moeda">BRL</option>
+              { coins.map((coinTypes) => (
+                <option
+                  value={ coinTypes }
+                  key={ coinTypes }
+                >
+                  { coinTypes }
+                </option>
+              ))}
             </select>
           </label>
           <label htmlFor="metodo">
-            Método de pagamento
+            Método de pagamento:
             <select id="metodo">
               <option id="metodo">Dinheiro</option>
               <option id="metodo">Cartão de crédito</option>
@@ -39,7 +46,7 @@ class Wallet extends React.Component {
             </select>
           </label>
           <label htmlFor="tag">
-            Tag
+            Tag:
             <select id="tag">
               <option id="tag">Alimentação</option>
               <option id="tag">Lazer</option>
@@ -54,12 +61,12 @@ class Wallet extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  emailUser: state.user.email,
-});
+const mapStateToProps = (state) => ({ coins: state.wallet.currencies });
 
-Wallet.propTypes = {
-  emailUser: PropTypes.string.isRequired,
+const mapDispatchToProps = (dispatch) => ({ sendCoin: () => dispatch(fetchCoin()) });
+
+Wallet.propTypes = { sendCoin: PropTypes.func.isRequired,
+  coins: PropTypes.shape().isRequired,
 };
 
-export default connect(mapStateToProps)(Wallet);
+export default connect(mapStateToProps, mapDispatchToProps)(Wallet);
