@@ -21,11 +21,11 @@ class Selects extends React.Component {
         <label htmlFor="tag">
           Tag:
           <select id="tag" name="tag" onChange={ (event) => handleChange(event) }>
-            <option>Alimentação</option>
-            <option>Lazer</option>
-            <option>Trabalho</option>
-            <option>Transporte</option>
-            <option>Saúde</option>
+            <option key="Alimentação">Alimentação</option>
+            <option key="Lazer">Lazer</option>
+            <option key="Trabalho">Trabalho</option>
+            <option key="Transporte">Transporte</option>
+            <option key="Saúde">Saúde</option>
           </select>
         </label>
       </>
