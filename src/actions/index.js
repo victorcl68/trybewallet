@@ -1,14 +1,17 @@
-export const ATT_EMAIL = 'ATT_EMAIL';
-export const RECEIVE_CURRENCIES = 'RECEIVE_CURRENCIES';
+export const SUB = 'SUBMIT';
 
-export const emailData = (state) => ({
-  type: ATT_EMAIL,
-  state,
+export const actionLogin = (email) => ({
+  type: SUB,
+  payload: {
+    email,
+  },
 });
 
-export const receivedCurrencies = (currencies) => ({
-  type: RECEIVE_CURRENCIES,
-  currencies,
+export const savingCurrencies = (currencies) => ({
+  type: 'SAVE',
+  payload: {
+    currencies,
+  },
 });
 
 export function fetchCoin() {
@@ -16,9 +19,14 @@ export function fetchCoin() {
     fetch('https://economia.awesomeapi.com.br/json/all')
       .then((response) => response.json())
       .then((currencie) => {
-        delete currencie.USDT;
-        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/delete
-        dispatch(receivedCurrencies(currencie));
+        dispatch(savingCurrencies(currencie));
       });
   };
 }
+
+export const addingExpense = (expense) => ({
+  type: 'ADD',
+  payload: {
+    expense,
+  },
+});

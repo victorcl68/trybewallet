@@ -2,14 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import PropTypes from 'prop-types';
-import { emailData } from '../actions';
+import { Link } from 'react-router-dom';
+import { actionLogin } from '../actions';
 
 class Login extends React.Component {
   constructor(props) {
     super(props);
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
     this.inputsCheck = this.inputsCheck.bind(this);
 
     this.state = {
@@ -21,15 +21,6 @@ class Login extends React.Component {
 
   handleChange({ target: { value, name } }) {
     this.setState({ [name]: value }, this.inputsCheck);
-  }
-
-  handleClick() {
-    const { email } = this.state;
-    const { sendEmail, history } = this.props;
-
-    sendEmail({ email });
-
-    history.push('/carteira');
   }
 
   inputsCheck() {
@@ -48,7 +39,8 @@ class Login extends React.Component {
   }
 
   render() {
-    const { isButtonDisabled } = this.state;
+    const { email, isButtonDisabled } = this.state;
+    const { sendEmail } = this.props;
     return (
       <main>
         <h1>Trybe Wallet</h1>
@@ -75,20 +67,25 @@ class Login extends React.Component {
             onChange={ this.handleChange }
           />
         </label>
-        <button type="button" onClick={ this.handleClick } disabled={ isButtonDisabled }>
-          Entrar
-        </button>
+        <Link to="/carteira">
+          <button
+            type="button"
+            disabled={ isButtonDisabled }
+            onClick={ () => sendEmail(email) }
+          >
+            Entrar
+          </button>
+        </Link>
       </main>
     );
   }
 }
 const mapDispatchToProps = (dispatch) => ({
-  sendEmail: (state) => dispatch(emailData(state)),
+  sendEmail: (state) => dispatch(actionLogin(state)),
 });
 
 Login.propTypes = {
   sendEmail: PropTypes.func.isRequired,
-  history: PropTypes.shape().isRequired,
 };
 
 export default connect(null, mapDispatchToProps)(Login);
